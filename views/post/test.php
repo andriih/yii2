@@ -12,4 +12,4 @@
 
 <?php
 
-	\app\controllers\debug(Yii::$app);
+	 //debug(Yii::$app);

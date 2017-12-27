@@ -1,6 +1,8 @@
 <?php 
 namespace app\controllers;
 use Yii;
+use app\models\TestForm;
+
 class PostController extends AppController
 {
 	public $layout = 'basic';
@@ -16,17 +18,32 @@ class PostController extends AppController
 
 	public function actionIndex()
 	{
+		
 		if(Yii::$app->request->isAjax)
 		{
 			debug(Yii::$app->request->post());
 			return 'test';
 		}
-		return $this->render('test');
+
+		$model = new TestForm();
+
+		$this->view->title = 'Статті';
+		return $this->render('test',compact('model'));
 	}
 
 	public function actionShow()
 	{
-		//$this->layout = 'basic';
+		$this->view->title = 'Одна стаття';
+		
+		$this->view->registerMetaTag([
+			'name' => 'keywords',
+			'content' => 'keywords........'
+		]);
+
+		$this->view->registerMetaTag([
+			'name' => 'description',
+			'content' => 'description ......'
+		]);
 		return $this->render('show');
 	}
 }

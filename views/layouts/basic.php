@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -14,11 +14,11 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang=" <?= Yii::$app->language ?>">
 <head>
 	<meta charset="UTF-8">
 	
-	<title>Document</title>
+	<title><?= $this->title ?></title>
 	<?php $this->head() ?>
 </head>
 <body>
@@ -30,7 +30,11 @@ AppAsset::register($this);
 			  <li role="presentation"><?= Html::a('Статті',['post/index']) ?></li>
 			  <li role="presentation"><?= Html::a('Стаття',['post/show']) ?></li>
 			</ul>
-
+			
+			<?php if (isset($this->blocks['block1'])): ?>
+					<?php echo $this->blocks['block1'] ?>
+			<?php endif ?>
+			
 			<?= $content; ?>
 		</div>
 	</div>

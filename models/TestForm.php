@@ -23,7 +23,19 @@ class TestForm extends Model
 		return[
 			[ ['name','email'],'required' ],
 			['email','email'],
-			['name','string','min'=>2]
+			// ['name','string','min'=>2,'tooShort'=>'Too short...'],
+			// ['name','string','max'=>5,'tooLong' => 'Too long....']
+			[ 'name', 'string','length'=>[2,5] ],
+			['name','myRule'],
+			['text','safe'],
 		];
+	}
+
+	public function myRule($attr)
+	{
+		if(!in_array($this->$attr, ['hello','world']))
+		{
+			$this->addError($attr," no hello world");
+		}
 	}
 }

@@ -7,6 +7,7 @@
 <?php $this->endBlock(); ?>
 
 <h1>Show  Action</h1>
+<?php var_dump($cats); ?>
 <button class="btn btn-success" id="btn">Click me...</button>
 
 <?php 

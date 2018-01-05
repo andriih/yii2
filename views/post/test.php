@@ -1,6 +1,7 @@
 <?php 
 	use yii\widgets\ActiveForm;
 	use yii\helpers\Html;
+	use mihaildev\ckeditor\CKEditor;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,14 @@
 	<?php $form = ActiveForm::begin(['options'=>['id' => 'testForm']]) ?>
 		<?= $form->field($model, 'name')->label('Імя') ?>
 		<?= $form->field($model, 'email') ?>
-		<?= $form->field($model, 'text')->label('Текст повідомлення')->textarea(['rows'=>5]) ?>
+		<?=
+			$form->field($model,'text')->widget(CKEditor::className(),[
+				'editorOptions'=>[
+					'preset' => 'full',
+					'inline' => false,
+				],
+			]);
+		 ?>
 		<?= Html::submitButton('Send',['class'=>'btn btn-success']) ?>
 	<?php $form = ActiveForm::end() ?>
 </body>

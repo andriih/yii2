@@ -25,12 +25,24 @@ class PostController extends AppController
 			debug(Yii::$app->request->post());
 			return 'test';
 		}
+		// $post = TestForm::findOne(2);
+		// $post->email = 'new@mail.com';
+		// $post->save();
+                
+  //      	$post->delete();
+  //       TestForm::deleteAll(['>','id',3]); 
+  //       TestForm::deleteAll(); 
 
 		$model = new TestForm();
+		// $model->name = 'Автор';
+		// $model->email = '';
+		// $model->text = 'Hello!';
+		// $model->save();
+
 
 		if($model->load(Yii::$app->request->post()))
 		{
-			if ( $model->validate() ) {
+			if ( $model->save () ) {
 				Yii::$app->session->setFlash('success','Data eccecpted!');
 				return $this->refresh();
 			}else{
@@ -57,7 +69,11 @@ class PostController extends AppController
 			'content' => 'description ......'
 		]);
 
-		$cats = Category::find()->all();
+		//$cats = Category::find()->all();
+		//$cats = Category::find()->orderBy(['id'=>'SORT_DESC'])->all();
+		//$cats = Category::find()->asArray()->where('parent=691')->all();
+
+		$cats = Category::find()->with('products')->all();
 
 		return $this->render('show', compact('cats'));
 	}
